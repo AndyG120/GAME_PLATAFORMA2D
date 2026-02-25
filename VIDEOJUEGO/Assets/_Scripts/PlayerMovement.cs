@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {   
-    private OldInput _oldinput;
+    private NewInput _newInput;
     public float speed;
+    private Rigidbody _rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        _oldinput = GetComponent<OldInput>();
+        Stats.score = 0;
+        _newInput = GetComponent<NewInput>();
+        _rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -20,8 +23,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void Movement()
-        {
-            transform.Translate(Vector3.right * _oldinput.horizontal * speed * Time.deltaTime);
+    {
+            transform.Translate(Vector3.right * _newInput.inputX * speed * Time.deltaTime);
+            //_rb.velocity = new Vector3(_newInput.inputX * speed, _rb.velocity.y, 0);
     }
 
 
